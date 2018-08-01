@@ -15,7 +15,7 @@ Manual descritivo dos passos realizados no processo de atualização do **Geonet
 
  [2. CRIAÇÃO DO FORK](#2-criaÇÃo-do-fork)
 
- [3. Clonando do repositório do GitHUB](#3-clonando-do-repositório-do-github)
+ [3. CLONANDO E ATUALIZANDO O REPOSITÓRIO DO GITHUB](#3-clonando-e-atualizando-o-repositÓrio-do-github)
 
 <!-- /MarkdownTOC -->
 
@@ -25,13 +25,10 @@ Manual descritivo dos passos realizados no processo de atualização do **Geonet
 
 ## HISTÓRICO DE REVISÕES
 
-| Data       | Versão | Descrição            | Autor                                     |
-| ---------- | ------ | -------------------- | ----------------------------------------- |
-| 19/07/2018 | 0.1    | Criação do documento | [Marcelo Gomes Santana](@MarceloGSantana) |
-|            |        |                      |                                           |
-|            |        |                      |                                           |
-|            |        |                      |                                           |
-|            |        |                      |                                           |
+| Data       | Versão | Descrição                              | Autor                                     |
+| ---------- | ------ | -------------------------------------- | ----------------------------------------- |
+| 19/07/2018 | 0.1    | Criação do documento                   | [Marcelo Gomes Santana](@MarceloGSantana) |
+| 01/08/2018 | 0.2    | Atualização da Introdução e do item 3. | [Marcelo Gomes Santana](@MarceloGSantana) |
 
 <br>
 
@@ -39,7 +36,7 @@ Manual descritivo dos passos realizados no processo de atualização do **Geonet
 
 ## 1. INTRODUÇÃO
 
-
+Para auxiliar a implementação das mudanças necessárias no Geonetwork foram descritos neste documento os passos para a criação do *fork* inicial do repositório original no GitHUB, bem como, a clonagem do repositório *forked* remoto do GitHUB para uma máquina local.
 
 <br>
 
@@ -69,20 +66,48 @@ Para criar um *fork* do repósitório oficial do **Geonetwork** no **GitHUB**, d
 
 [[TOPO]](#Topo)
 
-## 3. Clonando do repositório do GitHUB
+## 3. CLONANDO E ATUALIZANDO O REPOSITÓRIO DO GITHUB
 
-Para clonar o repositório do **geonetworkbahia/core-geonetwork-client** para a máquina local, abra um terminal linux e execute os seguintes comandos:
+**a)** Para clonar o repositório do **geonetworkbahia/core-geonetwork-client** para a máquina local, abra um terminal linux e execute os seguintes comandos:
 
 ```bash
 git clone git@github.com:geonetworkbahia/core-geonetwork-client.git
 cd core-geonetwork-client
 git remote add upstream git@github.com:geonetworkbahia/core-geonetwork-client.git
+```
+
+**b)** Para atualizar o repositório local com os códigos do repositório **geonetworkbahia/core-geonetwork-client** execute o segunte comando na pasta raiz do repositório local através de um terminal:
+
+```bash
+git pull origin master
+```
+
+**c)** Para atualizar o repositório **geonetworkbahia/core-geonetwork-client** com os códigos mais recentes do repositório oficial do Geonetwork ([https://github.com/geonetwork/core-geonetwork](https://github.com/geonetwork/core-geonetwork)), abra um terminal e execute os seguintes comandos na pasta raiz do repositório local:
+
+```bash
 git fetch upstream
 git rebase upstream/master master
+```
+
+* Se ocorrerem conflitos entre o código customizado com os códigos do repositório oficial do Geonetwork, corrija-os em todos os arquivos indicados como conflitantes. Após a finalização de todas as correções dos conflitos, execute:
+
+```bash
+git add .
+git commit -m "Comentário sobre as modificações feitas nas correções dos conflitos."
 git push origin master
 ```
 
-Após as modificações de código feitas localmente, execute os seguintes comandos para enviá-las para o repositório:
+* Caso não ocorra nenhum conflito, execute:
+
+```bash
+git push origin master
+```
+
+**d)** Para customizar os códigos com as devidas modificações necessárias, faça:
+
+* Primeiramente, atualize o repositório local conforme indicado no subitem **(b)**; 
+* Depois, implemente as devidas modificações no código do repositório local;
+* Ao final das modificações, execute os seguintes comandos para enviá-las para o repositório:
 
 ```bash
 git add .
